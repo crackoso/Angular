@@ -3,20 +3,55 @@
 	<head>
 		<title>More on Directives</title>
 		<script src="angular.min.js"></script>
+		<script src="jquery-3.2.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="styles.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</head>
-	<body ng-init="people=[{name:'Hibran', city:'Boston'},{name:'Emmanuel', city:'Boston'},{name:'Juan Pablo', city:'Mexico DF'}, {name:'Bertin Alejo', city:'Mexico DF'},]">
-		<ul>
-			<li ng-repeat="person in people">{{ person.name }} - {{ person.city }}</li>
-		</ul>
-		<table>
+	<body ng-init="
+	customers=[
+		{
+			joined: '2017-05-23', 
+			name:'Hibran', 
+			city:'Boston', 
+			orderTotal: 9.3476
+		},{
+			joined: '2017-07-30', 
+			name:'Emmanuel', 
+			city:'Boston', 
+			orderTotal:2.45665
+		},{
+			joined: '2017-10-13', 
+			name:'Juan Pablo', 
+			city:'Mexico DF', orderTotal: 10.2323
+		},{
+			joined: '2017-02-02', 
+			name:'Bertin Alejo', 
+			city:'Mexico DF', 
+			orderTotal:25.7783
+		}]">
+		<h3 class="text-center">Customers</h3>
+		<span>Filter:</span> <input type="text">
+		<br>
+		<br>
+		<table class="table table-responsive table-hover">
 			<tr>
-				<td>Name</td>
-				<td>City</td>
+				<th>Name</th>
+				<th>City</th>
+				<th>Total</th>
+				<th>Joined</th>
 			</tr>
-			<tr ng-repeat="person in people">
-				<td>{{person.name}}</td>
-				<td>{{person.city}}</td>
+			<tr ng-repeat="cust in customers">
+				<td>{{ cust.name | lowercase }}</td>
+				<td>{{ cust.city }}</td>
+				<td>{{ cust.orderTotal | currency }}</td>
+				<td>{{ cust.joined | date:'longDate'}}</td>
 			</tr>
 		</table>
 	</body>
