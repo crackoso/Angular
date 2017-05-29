@@ -19,12 +19,12 @@
 		{
 			joined: '2017-05-23', 
 			name:'Hibran', 
-			city:'Boston', 
+			city:'Cambridge', 
 			orderTotal: 9.3476
 		},{
 			joined: '2017-07-30', 
 			name:'Emmanuel', 
-			city:'Boston', 
+			city:'Somerville', 
 			orderTotal:2.45665
 		},{
 			joined: '2017-10-13', 
@@ -37,17 +37,17 @@
 			orderTotal:25.7783
 		}]">
 		<h3 class="text-center">Customers</h3>
-		<span>Filter:</span> <input type="text">
+		<span>Filter:</span> <input type="text" ng-model="customerFilter.name">
 		<br>
 		<br>
 		<table class="table table-responsive table-hover">
 			<tr>
-				<th>Name</th>
-				<th>City</th>
-				<th>Total</th>
-				<th>Joined</th>
+				<th ng-click="sortBy='name';reverse=!reverse">Name</th>
+				<th ng-click="sortBy='city';reverse=!reverse">City</th>
+				<th ng-click="sortBy='orderTotal';reverse=!reverse">Total</th>
+				<th ng-click="sortBy='joined';reverse=!reverse">Joined</th>
 			</tr>
-			<tr ng-repeat="cust in customers">
+			<tr ng-repeat="cust in customers | filter:customerFilter | orderBy:sortBy:reverse">
 				<td>{{ cust.name | lowercase }}</td>
 				<td>{{ cust.city }}</td>
 				<td>{{ cust.orderTotal | currency }}</td>
